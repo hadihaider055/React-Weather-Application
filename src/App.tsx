@@ -3,18 +3,26 @@ import logo from "./logo.svg";
 import "./App.css";
 import MainScreen from "./Components/Main Screen";
 import WeatherScreen from "./Components/Weather Screen";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import PageNotFound from "./Components/404 Page";
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <div className="container__weather">
-          <Route exact path="/weather" component={WeatherScreen} />
+    <div className="container__weather">
+      <Router>
+        <Switch>
           <Route exact path="/" component={MainScreen} />
-        </div>
-      </Switch>
-    </Router>
+          <Route exact path="/weather" component={WeatherScreen} />
+          <Route path="/404" component={PageNotFound} />
+          {/* <Redirect to="/404" /> */}
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
